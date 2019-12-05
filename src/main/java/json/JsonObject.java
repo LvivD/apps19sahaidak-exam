@@ -69,11 +69,12 @@ public class JsonObject extends Json {
 
     public JsonObject projection(String... names) {
         // ToDo
-//        JsonObject newJsonObject = new JsonObject();
-//        for (String name:
-//             ) {
-//
-//        }
-        return null;
+        JsonObject newJsonObject = new JsonObject();
+        for (String name: Arrays.asList(names)) {
+            if (newJsonObject.contains(name)) {
+                newJsonObject.add(pairArray.get(pairArray.indexOf(nameSet.get(name))));
+            }
+        }
+        return newJsonObject;
     }
 }
