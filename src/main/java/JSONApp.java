@@ -36,8 +36,28 @@ public class JSONApp {
 
 
     public static JsonObject sessionResult() {
-        JsonObject jsonObject = null;
+        JsonObject jsonObject = new JsonObject();
         // ToDo
+        jsonObject.add(new JsonPair("name", new JsonString("Andrii")));
+        jsonObject.add(new JsonPair("surname", new JsonString("Rodionov")));
+        jsonObject.add(new JsonPair("year", new JsonNumber(2)));
+        jsonObject.add(new JsonPair("exams",
+                new JsonArray(
+                        new JsonObject(
+                        new JsonPair("course", new JsonString("OOP")),
+                        new JsonPair("mark", new JsonNumber(3)),
+                        new JsonPair("passed", new JsonBoolean(true))),
+
+                        new JsonObject(
+                                new JsonPair("course", new JsonString("English")),
+                                new JsonPair("mark", new JsonNumber(5)),
+                                new JsonPair("passed", new JsonBoolean(true))),
+
+                        new JsonObject(
+                                new JsonPair("course", new JsonString("Math")),
+                                new JsonPair("mark", new JsonNumber(2)),
+                                new JsonPair("passed", new JsonBoolean(false)))
+                )));
         return jsonObject;
     }
 }

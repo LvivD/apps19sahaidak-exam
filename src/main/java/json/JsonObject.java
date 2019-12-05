@@ -1,19 +1,28 @@
 package json;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Andrii_Rodionov on 1/3/2017.
  */
 public class JsonObject extends Json {
 
-    private List<JsonPair> pairArray;
+    private ArrayList<JsonPair> pairArray;
+    private HashMap<String, JsonPair> nameSet = new HashMap<>();
 
     public JsonObject(JsonPair... jsonPairs) {
         // ToDo
-        pairArray = Arrays.asList(jsonPairs);
+        pairArray = new ArrayList<>();
+        for (JsonPair jsonPair: Arrays.asList(jsonPairs)) {
+            if (! nameSet.containsKey(jsonPair.key)) {
+                nameSet.put(jsonPair.key, jsonPair);
+                pairArray.add(jsonPair);
+            }
+            else {
+                pairArray.set(pairArray.indexOf(nameSet.get(jsonPair.key)), jsonPair);
+            }
+        }
     }
 
     @Override
@@ -24,6 +33,9 @@ public class JsonObject extends Json {
         for (JsonPair iterPair: pairArray) {
             resString.append("'").append(iterPair.key).append("': ");
             resString.append(iterPair.value.toJson()).append(", ");
+        }
+        if (resString.length() != 1) {
+            resString.delete(resString.length() - 2, resString.length() - 1);
         }
         resString.append("}");
         return resString.toString();
