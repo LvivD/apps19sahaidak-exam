@@ -43,6 +43,13 @@ public class JsonObject extends Json {
 
     public void add(JsonPair jsonPair) {
         // ToDo
+        if (! nameSet.containsKey(jsonPair.key)) {
+            nameSet.put(jsonPair.key, jsonPair);
+            pairArray.add(jsonPair);
+        }
+        else {
+            pairArray.set(pairArray.indexOf(nameSet.get(jsonPair.key)), jsonPair);
+        }
         pairArray.add(jsonPair);
     }
 
