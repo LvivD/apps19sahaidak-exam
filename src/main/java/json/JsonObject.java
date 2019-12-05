@@ -63,8 +63,17 @@ public class JsonObject extends Json {
         return null;
     }
 
+    public boolean contains(String name) {
+        return nameSet.containsKey(name);
+    }
+
     public JsonObject projection(String... names) {
         // ToDo
+//        JsonObject newJsonObject = new JsonObject();
+//        for (String name:
+//             ) {
+//
+//        }
         return null;
     }
 }
